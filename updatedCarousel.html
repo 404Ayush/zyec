@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Lumora Candles</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Georgia', serif;
+        }
+
+        html {
+  scroll-behavior: smooth;
+}
+
+
+        body {
+          background-color: #f8f4f0;
+          color: #2c2c2c;
+        }
+
+        header {
+          background: #1c1c1c;
+          color: #fff;
+          padding: 1.5rem 3rem;
+          text-align: center;
+        }
+
+        header h1 {
+          font-size: 2.5rem;
+          letter-spacing: 2px;
+          font-weight: 300;
+        }
+
+        .hero {
+          background-image: url('https://via.placeholder.com/1600x600?text=Luxury+Candle+Banner');
+          background-size: cover;
+          background-position: center;
+          height: 60vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          text-shadow: 0 0 10px rgba(0,0,0,0.6);
+          text-align: center;
+        }
+
+        .hero h2 {
+          font-size: 3rem;
+          background-color: rgba(0,0,0,0.4);
+          padding: 1rem 2rem;
+          border-radius: 10px;
+        }
+
+        .section {
+          padding: 4rem 2rem;
+          max-width: 1200px;
+          margin: auto;
+        }
+
+        .section-title {
+          text-align: center;
+          font-size: 2rem;
+          margin-bottom: 2rem;
+          font-weight: 400;
+        }
+
+        .products {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 2rem;
+        }
+
+        .product-card {
+          flex: 1 1 calc(33.333% - 2rem);
+          background: #fff;
+          padding: 1.5rem;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+          transform: translateY(-5px);
+        }
+
+        .product-card img {
+          width: 100%;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .product-card p {
+          font-size: 0.95rem;
+          color: #555;
+        }
+
+        .about {
+          background: #eae0d5;
+          border-radius: 10px;
+          padding: 2rem;
+          font-size: 1.1rem;
+          line-height: 1.6;
+        }
+
+        .contact {
+          text-align: center;
+          padding: 2rem;
+        }
+
+        .contact a {
+          margin: 0 1rem;
+          color: #1c1c1c;
+          font-size: 1.4rem;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+          color: #8b6f47;
+        }
+
+        /*.carousel-container {
+          position: relative;
+          overflow: hidden;
+          max-width: 100%;
+          margin: auto;
+        }
+
+        .carousel-track {
+          display: flex;
+          transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: rgba(255, 255, 255, 0.8);
+          border: none;
+          font-size: 2rem;
+          cursor: pointer;
+          z-index: 2;
+          padding: 0.5rem 1rem;
+          border-radius: 50%;
+        }
+
+        .carousel-btn.prev {
+          left: 10px;
+        }
+
+        .carousel-btn.next {
+          right: 10px;
+        }
+
+        .carousel-container .product-card {
+          min-width: 50%;
+          box-sizing: border-box;
+        }*/
+
+        .carousel-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.product-card {
+  box-sizing: border-box;
+  padding: 1rem;
+  flex: 0 0 100%;
+}
+
+/* Already set — but let's be explicit */
+.product-card {
+  flex: 0 0 100%;
+}
+
+
+@media (min-width: 600px) {
+  .product-card {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 900px) {
+  .product-card {
+    flex: 0 0 33.3333%;
+  }
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+.brand-header {
+  background: #1c1c1c;
+  color: #fff;
+  padding: 2rem 2rem;
+}
+
+.brand-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.brand-text h1 {
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-size: 1rem;
+  font-style: italic;
+  color: #c9c9c9;
+}
+
+
+.hero {
+  background-image: url('../images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* dark overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-subtext {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  color: #1c1c1c;
+  background-color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #e5e5e5;
+}
+
+
+
+
+
+        footer {
+          text-align: center;
+          padding: 1.5rem;
+          background: #1c1c1c;
+          color: #fff;
+          font-size: 0.9rem;
+        }
+
+        /*@media (max-width: 768px) {
+          .product-card {
+            flex: 1 1 100%;
+          }*/
+
+          .hero h2 {
+            font-size: 2rem;
+          }
+        }
+    </style>
+</head>
+<body>
+
+<header class="brand-header">
+    <div class="brand-container">
+        <img src="resources/logo.JPG"" alt="Zyec Logo" class="brand-logo" />
+        <div class="brand-text">
+            <h1>Zyec Candles</h1>
+            <p class="tagline">Handcrafted Luxury in Every Flame</p>
+        </div>
+    </div>
+</header>
+
+
+<!--<section class="hero">
+    <h2>Illuminate Your Space with Elegance</h2>
+</section>-->
+<section class="hero">
+    <div class="hero-content">
+        <h2>Illuminate Your Space with Elegance</h2>
+        <p class="hero-subtext">Crafted scents. Timeless design. Pure indulgence.</p>
+        <a href="#collection" class="hero-button">Shop the Collection</a>
+    </div>
+</section>
+
+
+<!--<section class="section">
+    <h2 class="section-title">Our Collection</h2>
+    <div class="carousel-container">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="carousel-track">
+            <div class="product-card">
+                <img src="images/product1.jpg" alt="Candle 1"/>
+                <h3>Velvet Rose</h3>
+                <p>A romantic blend of rose petals and musk. Hand-poured with soy wax.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/product2.jpg" alt="Candle 2"/>
+                <h3>Amber Noir</h3>
+                <p>Deep notes of amber, vanilla, and patchouli. Elegant and bold.</p>
+            </div>
+            <div class="product-card">
+                <img src="images/product3.jpg" alt="Candle 3"/>
+                <h3>White Linen</h3>
+                <p>Fresh, clean fragrance with hints of jasmine and sandalwood.</p>
+            </div>
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
+    </div>
+</section>-->
+<section class="section" id="collection">
+    <h2 class="section-title">Our Collection</h2>
+    <div class="carousel-container">
+        <button class="carousel-btn prev">&#10094;</button>
+
+        <div class="carousel-viewport">
+            <div class="carousel-track">
+                <div class="product-card">
+                    <img src="resources/1.PNG" alt="Candle 1">
+                    <h3>Velvet Rose</h3>
+                    <p>Romantic rose petals and musk. Hand-poured with soy wax.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/2.png" alt="Candle 2">
+                    <h3>Amber Noir</h3>
+                    <p>Deep amber, vanilla, and patchouli. Elegant and bold.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/3.png" alt="Candle 3">
+                    <h3>White Linen</h3>
+                    <p>Fresh jasmine and sandalwood. Clean and soothing.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/4.png" alt="Candle 4">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/5.png" alt="Candle 5">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/6.png" alt="Candle 6">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/7.png" alt="Candle 7">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/8.png" alt="Candle 8">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/9.JPG" alt="Candle 9">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/10.JPG" alt="Candle 10">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+                <div class="product-card">
+                    <img src="resources/11.png" alt="Candle 11">
+                    <h3>Golden Hour</h3>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-btn next">&#10095;</button>
+    </div>
+</section>
+
+
+
+
+<section class="section about">
+    <h2 class="section-title">About Lumora</h2>
+    <p>
+        At Zyec, we believe in creating moments of calm and indulgence through the power of scent. Each candle is
+        hand-crafted using premium soy wax, essential oils, and a touch of luxury. Whether you're winding down after a
+        long day or setting the mood for a special evening, Zyec brings elegance into every space.
+    </p>
+</section>
+
+<section class="section contact">
+    <h2 class="section-title">Connect With Us</h2>
+    <p>Follow us or reach out for custom orders and wholesale inquiries:</p>
+    <div>
+        <a href="https://www.instagram.com/zyec_candles/">Instagram</a>
+        <a href="https://api.whatsapp.com/send/?phone=919266991255&text&type=phone_number&app_absent=0">Whatsapp</a>
+        <a href="mailto:contact@lumoracandles.com">Email</a>
+    </div>
+</section>
+
+<footer>
+    &copy; 2025 Zyec Candles. All rights reserved.
+</footer>
+
+<!--<script>
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+
+    let index = 0;
+    const totalItems = document.querySelectorAll('.carousel-track .product-card').length;
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % totalItems;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + totalItems) % totalItems;
+      updateCarousel();
+    });
+
+    function updateCarousel() {
+      const offset = -index * 100;
+      track.style.transform = `translateX(${offset}%)`;
+    }
+</script>-->
+<script>
+    const track = document.querySelector('.carousel-track');
+    const cards = document.querySelectorAll('.product-card');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+
+    let index = 0;
+
+    function getItemsPerView() {
+      const width = window.innerWidth;
+      if (width >= 900) return 3;
+      if (width >= 600) return 2;
+      return 1;
+    }
+
+    function updateCarousel() {
+      const itemsPerView = getItemsPerView();
+      const card = cards[0];
+      const cardStyle = window.getComputedStyle(card);
+      const cardWidth = card.offsetWidth
+        + parseFloat(cardStyle.marginLeft)
+        + parseFloat(cardStyle.marginRight);
+
+      const offset = index * cardWidth;
+      track.style.transform = `translateX(-${offset}px)`;
+    }
+
+    function loopIndex(delta) {
+      const itemsPerView = getItemsPerView();
+      const maxIndex = cards.length - itemsPerView;
+
+      index += delta;
+
+      if (index > maxIndex) {
+        index = 0; // loop to first
+      } else if (index < 0) {
+        index = maxIndex; // loop to last
+      }
+
+      updateCarousel();
+    }
+
+    nextBtn.addEventListener('click', () => loopIndex(1));
+    prevBtn.addEventListener('click', () => loopIndex(-1));
+
+    window.addEventListener('resize', updateCarousel);
+    window.addEventListener('load', updateCarousel);
+</script>
+
+
+
+
+</body>
+</html>

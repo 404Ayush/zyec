@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Lumora Candles</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Georgia', serif;
+        }
+
+        body {
+          background-color: #f8f4f0;
+          color: #2c2c2c;
+        }
+
+        header {
+          background: #1c1c1c;
+          color: #fff;
+          padding: 1.5rem 3rem;
+          text-align: center;
+        }
+
+        header h1 {
+          font-size: 2.5rem;
+          letter-spacing: 2px;
+          font-weight: 300;
+        }
+
+        .hero {
+          background-image: url('https://via.placeholder.com/1600x600?text=Luxury+Candle+Banner');
+          background-size: cover;
+          background-position: center;
+          height: 60vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          text-shadow: 0 0 10px rgba(0,0,0,0.6);
+          text-align: center;
+        }
+
+        .hero h2 {
+          font-size: 3rem;
+          background-color: rgba(0,0,0,0.4);
+          padding: 1rem 2rem;
+          border-radius: 10px;
+        }
+
+        .section {
+          padding: 4rem 2rem;
+          max-width: 1200px;
+          margin: auto;
+        }
+
+        .section-title {
+          text-align: center;
+          font-size: 2rem;
+          margin-bottom: 2rem;
+          font-weight: 400;
+        }
+
+        .products {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 2rem;
+        }
+
+        .product-card {
+          flex: 1 1 calc(33.333% - 2rem);
+          background: #fff;
+          padding: 1.5rem;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+          transform: translateY(-5px);
+        }
+
+        .product-card img {
+          width: 100%;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .product-card p {
+          font-size: 0.95rem;
+          color: #555;
+        }
+
+        .about {
+          background: #eae0d5;
+          border-radius: 10px;
+          padding: 2rem;
+          font-size: 1.1rem;
+          line-height: 1.6;
+        }
+
+        .contact {
+          text-align: center;
+          padding: 2rem;
+        }
+
+        .contact a {
+          margin: 0 1rem;
+          color: #1c1c1c;
+          font-size: 1.4rem;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+          color: #8b6f47;
+        }
+
+        footer {
+          text-align: center;
+          padding: 1.5rem;
+          background: #1c1c1c;
+          color: #fff;
+          font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+          .product-card {
+            flex: 1 1 100%;
+          }
+
+          .hero h2 {
+            font-size: 2rem;
+          }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Lumora Candles</h1>
+</header>
+
+<section class="hero">
+    <h2>Illuminate Your Space with Elegance</h2>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Our Collection</h2>
+    <div class="products">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/400x300?text=Product+1" alt="Candle 1" />
+            <h3>Velvet Rose</h3>
+            <p>A romantic blend of rose petals and musk. Hand-poured with soy wax.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/400x300?text=Product+2" alt="Candle 2" />
+            <h3>Amber Noir</h3>
+            <p>Deep notes of amber, vanilla, and patchouli. Elegant and bold.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/400x300?text=Product+3" alt="Candle 3" />
+            <h3>White Linen</h3>
+            <p>Fresh, clean fragrance with hints of jasmine and sandalwood.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/400x300?text=Product+3" alt="Candle 3" />
+            <h3>White Linen</h3>
+            <p>Fresh, clean fragrance with hints of jasmine and sandalwood.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/400x300?text=Product+3" alt="Candle 3" />
+            <h3>White Linen</h3>
+            <p>Fresh, clean fragrance with hints of jasmine and sandalwood.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/400x300?text=Product+3" alt="Candle 3" />
+            <h3>White Linen</h3>
+            <p>Fresh, clean fragrance with hints of jasmine and sandalwood.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/400x300?text=Product+3" alt="Candle 3" />
+            <h3>White Linen</h3>
+            <p>Fresh, clean fragrance with hints of jasmine and sandalwood.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section about">
+    <h2 class="section-title">About Lumora</h2>
+    <p>
+        At Lumora, we believe in creating moments of calm and indulgence through the power of scent. Each candle is hand-crafted using premium soy wax, essential oils, and a touch of luxury. Whether you're winding down after a long day or setting the mood for a special evening, Lumora brings elegance into every space.
+    </p>
+</section>
+
+<section class="section contact">
+    <h2 class="section-title">Connect With Us</h2>
+    <p>Follow us or reach out for custom orders and wholesale inquiries:</p>
+    <div>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="mailto:contact@lumoracandles.com">Email</a>
+    </div>
+</section>
+
+<footer>
+    &copy; 2025 Lumora Candles. All rights reserved.
+</footer>
+
+</body>
+</html>
