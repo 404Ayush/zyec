@@ -36,7 +36,7 @@
         }
 
         .hero {
-          background-image: url('resources/1.PNG');
+          background-image: url('https://via.placeholder.com/1600x600?text=Luxury+Candle+Banner');
           background-size: cover;
           background-position: center;
           height: 60vh;
@@ -263,7 +263,7 @@
 
 
 .hero {
-  background-image: url('resources/banner.jpeg');
+  background-image: url('../images/hero.jpg');
   background-size: cover;
   background-position: center;
   height: 70vh;
@@ -331,12 +331,70 @@
         /*@media (max-width: 768px) {
           .product-card {
             flex: 1 1 100%;
-          }*/
+          }
 
           .hero h2 {
             font-size: 2rem;
           }
-        }
+        }*/
+
+        .product-variant-wrapper {
+  flex: 0 0 calc(33.333% - 2rem);
+  position: relative;
+  margin-bottom: 3rem; /* Space for the dots */
+}
+
+.product-variant-stack {
+  position: relative;
+  height: 400px; /* Enough to contain all cards */
+}
+
+.product-variant-stack .product-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.4s ease, z-index 0.3s;
+  opacity: 0;
+  transform: translate(10px, 10px) scale(0.95);
+  z-index: 0;
+}
+
+.product-variant-stack .product-card.active {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  z-index: 2;
+}
+
+.product-variant-stack .product-card:nth-child(2) {
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.variant-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+  gap: 0.5rem;
+}
+
+.variant-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: background-color 0.3s;
+}
+
+.variant-dots .dot.active {
+  background-color: #8b6f47;
+}
+
     </style>
 </head>
 <body>
@@ -414,13 +472,39 @@
                 <div class="product-card">
                     <img src="resources/10.JPG" alt="Candle 10">
                     <h3>Wax and words - GlowScript</h3>
-                    <p>Description pending</p>
+                    <p>Citrus and honey tones. Soft and sunny aroma.</p>
                 </div>
                 <div class="product-card">
                     <img src="resources/11.png" alt="Candle 11">
                     <h3>Happy Rakhi Wax Sachet 🌸✨</h3>
                     <p>A charming wax sachet embossed with Happy Rakhi, perfect for adding a gentle fragrance and festive touch to wardrobes, drawers, or gift hampers. A little keepsake to make your Rakhi gift extra special.</p>
                 </div>
+
+                <div class="product-variant-wrapper">
+                    <div class="product-variant-stack">
+                        <div class="product-card active">
+                            <img src="resources/5.png" alt="Red Candle" />
+                            <h3>Sweet Box Candle</h3>
+                            <p>Red variant description.</p>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="resources/6.png" alt="Green Candle" />
+                            <h3>Sweet Box Candle</h3>
+                            <p>Green variant description.</p>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="resources/7.png" alt="Blue Candle" />
+                            <h3>Sweet Box Candle</h3>
+                            <p>Blue variant description.</p>
+                        </div>
+                    </div>
+
+                    <!-- Dots must be outside of .product-variant-stack -->
+                    <div class="variant-dots"></div>
+                </div>
+
             </div>
         </div>
 
@@ -443,6 +527,7 @@
     <div>
         <a href="https://www.instagram.com/zyec_candles/">Instagram</a>
         <a href="https://api.whatsapp.com/send/?phone=919266991255&text&type=phone_number&app_absent=0">Whatsapp</a>
+        <a href="mailto:contact@lumoracandles.com">Email</a>
     </div>
 </section>
 
@@ -497,6 +582,37 @@
 
     window.addEventListener('resize', updateCarousel);
     window.addEventListener('load', updateCarousel);
+
+    document.querySelectorAll('.product-variant-wrapper').forEach(wrapper => {
+  const stack = wrapper.querySelector('.product-variant-stack');
+  let cards = Array.from(stack.querySelectorAll('.product-card'));
+
+  // Create dots
+  const dotsContainer = wrapper.querySelector('.variant-dots');
+  cards.forEach((_, index) => {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dotsContainer.appendChild(dot);
+  });
+  let dots = Array.from(dotsContainer.children);
+
+  wrapper.addEventListener('click', () => {
+    // Rotate cards
+    const first = cards.shift();
+    cards.push(first);
+    cards.forEach(card => stack.appendChild(card));
+    cards.forEach(card => card.classList.remove('active'));
+    cards[0].classList.add('active');
+
+    // Rotate dots
+    const firstDot = dots.shift();
+    dots.push(firstDot);
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[0].classList.add('active');
+  });
+});
+
 </script>
 
 </body>
